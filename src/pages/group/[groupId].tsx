@@ -68,7 +68,7 @@ const Group: NextPage<GroupPageProps> = ({room}) => {
 
   useEffect(() => {
     console.log('useEffect')
-    const  io = socket('http://localhost:5000');
+    const  io = socket(String(process.env.NEXT_PUBLIC_API_URL));
     setIo(io)
     io.on('connect', () => {
       const user = sessionStorage.getItem('username');
