@@ -28,17 +28,21 @@ import Lottie from 'react-lottie';
 const Home: NextPage = () => {
   const [groupId, setGroupId] = useState('');
   const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const generateAction = (username: string) => {
     console.log('generateAction');
     async function generateRoom() {
       try {
+        setLoading(true);
         const response = await api.post('/rooms', { owner: username });
         const roomId = response.data.id;
         sessionStorage.setItem('roomId', roomId);
         sessionStorage.setItem('username', username);
+        setLoading(false);
         router.push(`/group/${roomId}`);
       } catch (error) {
+        setLoading(false);
         console.error('error', error);
       }
     }
@@ -144,7 +148,7 @@ const Home: NextPage = () => {
                   <Button mr={3} onClick={onClose}>
                     Close
                   </Button>
-                  <Button variant="outline" onClick={handleAction}>
+                  <Button variant="outline" onClick={handleAction} isLoading={loading}>
                     Next
                   </Button>
                 </ModalFooter>
