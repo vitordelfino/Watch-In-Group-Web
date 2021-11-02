@@ -1,0 +1,37 @@
+{
+  "name": "watch-in-group-web",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.16",
+    "@chakra-ui/react": "^1.6.10",
+    "@chakra-ui/theme-tools": "^1.2.2",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "axios": "^0.24.0",
+    "framer-motion": "^5.0.0",
+    "next": "12.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-lottie": "^1.2.3",
+    "react-player": "^2.9.0",
+    "socket.io-client": "^4.3.2",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "16.11.6",
+    "@types/react": "17.0.33",
+    "@types/react-lottie": "^1.2.6",
+    "@types/styled-components": "^5.1.15",
+    "eslint": "7",
+    "eslint-config-next": "12.0.2",
+    "prettier": "^2.4.1",
+    "typescript": "4.4.4"
+  }
+}
