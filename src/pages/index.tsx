@@ -24,6 +24,7 @@ import { EnterGroupId } from '../components/EnterGroupId';
 import api from '../services/api';
 import * as animationData from './lf30_editor_ouvnl3vy.json';
 import Lottie from 'react-lottie';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   const [groupId, setGroupId] = useState('');
@@ -93,70 +94,104 @@ const Home: NextPage = () => {
   // );
 
   return (
-    <Grid templateColumns="repeat(5, 1fr)" h="100vh" w="100vw" gap={6}>
-      <GridItem bg="blue.900" colSpan={2}>
-        <Center flexDirection="column" height="80%">
-          {/* <Img src="/estoque.gif" w="md" mb="7" /> */}
-          <Lottie
-            isClickToPauseDisabled={true}
-            options={{
-              loop: true,
-              autoplay: true,
-              animationData: animationData,
-              rendererSettings: {
-                preserveAspectRatio: 'xMidYMid slice',
-              },
-            }}
-            height={500}
-            width={500}
-          />
-          <Text
-            filter="drop-shadow(0.2rem 0.2rem 0.5rem #ebf8ff)"
-            fontSize="4xl"
-            color="blue.100"
-            mt="10"
-            fontWeight="medium"
-          >
-            Watch Videos In Group
-          </Text>
-        </Center>
-      </GridItem>
-      <GridItem colSpan={3}>
-        <Center flexDirection="column" height="100%">
-          {/* <Heading top="-20" position="relative" color="purple.900">
-            Gerenciador de Estoque
-          </Heading> */}
+    <div>
+      <Head>
+        <title>watchvideoin.group</title>
 
-            <EnterGroupId onJoin={handleJoin} />
-            <Text fontSize="2xl">or</Text>
-            <Flex w="xl">
-              <Button w="100%" onClick={handleGenerate}>Generate a group</Button>
-            </Flex>
-            <Modal isOpen={isOpen} onClose={onClose} isCentered>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Insert your username</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Input
-                    placeholder="username"
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </ModalBody>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
 
-                <ModalFooter>
-                  <Button mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                  <Button variant="outline" onClick={handleAction} isLoading={loading}>
-                    Next
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-        </Center>
-      </GridItem>
-    </Grid>
+        <meta name="twitter:card" content="summary" key="twcard" />
+        <meta name="twitter:creator" content="vitordelfino" key="twhandle" />
+        <meta
+          name="twitter:image"
+          content="https://i.imgur.com/nGWeBz7.png"
+          key="twimage"
+        />
+
+        <meta property="og:url" content="www.watchvideosin.group" key="ogurl" />
+        <meta
+          property="og:image"
+          content="https://i.imgur.com/nGWeBz7.png"
+          key="ogimage"
+        />
+        <meta
+          property="og:site_name"
+          content="watchvideosin.group"
+          key="ogsitename"
+        />
+        <meta property="og:title" content="Watch Video in Group" key="ogtitle" />
+        <meta
+          property="og:description"
+          content="Watch videos from youtube in group"
+          key="ogdesc"
+        />
+      </Head>
+      <Grid templateColumns="repeat(5, 1fr)" h="100vh" w="100vw" gap={6}>
+        <GridItem bg="blue.900" colSpan={2}>
+          <Center flexDirection="column" height="80%">
+            {/* <Img src="/estoque.gif" w="md" mb="7" /> */}
+            <Lottie
+              isClickToPauseDisabled={true}
+              options={{
+                loop: true,
+                autoplay: true,
+                animationData: animationData,
+                rendererSettings: {
+                  preserveAspectRatio: 'xMidYMid slice',
+                },
+              }}
+              height={500}
+              width={500}
+            />
+            <Text
+              filter="drop-shadow(0.2rem 0.2rem 0.5rem #ebf8ff)"
+              fontSize="4xl"
+              color="blue.100"
+              mt="10"
+              fontWeight="medium"
+            >
+              Watch Videos In Group
+            </Text>
+          </Center>
+        </GridItem>
+        <GridItem colSpan={3}>
+          <Center flexDirection="column" height="100%">
+            {/* <Heading top="-20" position="relative" color="purple.900">
+              Gerenciador de Estoque
+            </Heading> */}
+
+              <EnterGroupId onJoin={handleJoin} />
+              <Text fontSize="2xl">or</Text>
+              <Flex w="xl">
+                <Button w="100%" onClick={handleGenerate}>Generate a group</Button>
+              </Flex>
+              <Modal isOpen={isOpen} onClose={onClose} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Insert your username</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Input
+                      placeholder="username"
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button variant="outline" onClick={handleAction} isLoading={loading}>
+                      Next
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+          </Center>
+        </GridItem>
+      </Grid>
+    </div>
   );
 };
 
