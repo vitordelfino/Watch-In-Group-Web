@@ -1,9 +1,7 @@
 import {
     Box,
   Button,
-  Center,
   Flex,
-  HStack,
   IconButton,
   Input,
   Modal,
@@ -40,8 +38,8 @@ type GroupPageProps = {
 };
 
 function YouTubeGetID(url: string){
-  url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+  const split = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  return (split[2] !== undefined) ? split[2].split(/[^0-9a-z_\-]/i)[0] : split[0];
 }
 
 const Group: NextPage<GroupPageProps> = ({ room }) => {
@@ -112,7 +110,7 @@ const Group: NextPage<GroupPageProps> = ({ room }) => {
   useEffect(() => {
     if (videos.length) {
       const video = videos[videos.length - 1];
-      console.log(video, 'can play', ReactPlayer.canPlay(video.url));
+      console.log(video, 'can play', ReactPlayer.canPlay(video));
     }
   }, [videos]);
 
