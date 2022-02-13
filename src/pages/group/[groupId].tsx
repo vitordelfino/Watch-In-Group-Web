@@ -29,7 +29,7 @@ import { Room, YoutubeVideo } from '../../types';
 import socket, { io, Socket } from 'socket.io-client';
 import ReactPlayer from 'react-player';
 import { Header } from '../../components/Header';
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import YouTube from 'react-youtube';
 
 type GroupPageProps = {
@@ -250,8 +250,11 @@ const reactPlayerWidthThumb = useBreakpointValue({
                   m="2"
                   cursor="pointer"
                   onClick={() => handleChangeCurrentVideo(video)}
+                  position="relative"
                 >
                   <Image src={`https://img.youtube.com/vi/${YouTubeGetID(video)}/hqdefault.jpg`} />
+
+
                 </Box>
               ))}
             </Flex>
