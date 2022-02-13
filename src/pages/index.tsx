@@ -16,6 +16,10 @@ import {
   ModalHeader,
   Grid,
   GridItem,
+  useBreakpointValue,
+  Heading,
+  Spacer,
+  HStack,
 } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -31,6 +35,14 @@ const Home: NextPage = () => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const lottieSize = useBreakpointValue({
+    base: 500,
+    sm: 200,
+    md: 300,
+    lg: 500,
+  });
+  const leftGridSpan = useBreakpointValue({ md: 0, lg: 2 });
+  const rightGridSpan = useBreakpointValue({ md: 5, lg: 3 });
   const generateAction = (username: string) => {
     console.log('generateAction');
     async function generateRoom() {
@@ -54,7 +66,6 @@ const Home: NextPage = () => {
     sessionStorage.setItem('roomId', group);
     sessionStorage.setItem('username', user);
     router.push(`/group/${group}`);
-
   };
 
   const [action, setAction] = useState<'join' | 'generate'>('join');
@@ -84,13 +95,13 @@ const Home: NextPage = () => {
   }, [groupId, username, action]);
 
   // return (
-    // <Center w="100%" h="100%" flexDirection="column">
-    //   <VStack spacing="16">
-    //     <Text fontSize="5xl">Watch Videos In Group</Text>
-    //     <EnterGroupId onJoin={handleJoin} />
+  // <Center w="100%" h="100%" flexDirection="column">
+  //   <VStack spacing="16">
+  //     <Text fontSize="5xl">Watch Videos In Group</Text>
+  //     <EnterGroupId onJoin={handleJoin} />
 
-    //   </VStack>
-    // </Center>
+  //   </VStack>
+  // </Center>
   // );
 
   return (
@@ -120,77 +131,50 @@ const Home: NextPage = () => {
           content="watchvideosin.group"
           key="ogsitename"
         />
-        <meta property="og:title" content="Watch Video in Group" key="ogtitle" />
+        <meta
+          property="og:title"
+          content="Watch Video in Group"
+          key="ogtitle"
+        />
         <meta
           property="og:description"
           content="Watch videos from youtube in group"
           key="ogdesc"
         />
       </Head>
-      <Grid templateColumns="repeat(5, 1fr)" h="100vh" w="100vw" gap={6}>
-        <GridItem bg="blue.900" colSpan={2}>
-          <Center flexDirection="column" height="80%">
-            {/* <Img src="/estoque.gif" w="md" mb="7" /> */}
-            <Lottie
-              isClickToPauseDisabled={true}
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: animationData,
-                rendererSettings: {
-                  preserveAspectRatio: 'xMidYMid slice',
-                },
-              }}
-              height={500}
-              width={500}
-            />
-            <Text
-              filter="drop-shadow(0.2rem 0.2rem 0.5rem #ebf8ff)"
-              fontSize="4xl"
-              color="blue.100"
-              mt="10"
-              fontWeight="medium"
-            >
-              Watch Videos In Group
-            </Text>
-          </Center>
-        </GridItem>
-        <GridItem colSpan={3}>
-          <Center flexDirection="column" height="100%">
-            {/* <Heading top="-20" position="relative" color="purple.900">
-              Gerenciador de Estoque
-            </Heading> */}
+      <Center height="100vh" flexDirection="column">
+        <VStack spacing="8">
+          <Heading>Watch Videos In Group</Heading>
+          <EnterGroupId onJoin={handleJoin} />
+          <Button width="100%" onClick={handleGenerate}>Generate a group</Button>
+        </VStack>
+        <Modal isOpen={isOpen} onClose={onClose} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Insert your username</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Input
+                placeholder="username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </ModalBody>
 
-              <EnterGroupId onJoin={handleJoin} />
-              <Text fontSize="2xl">or</Text>
-              <Flex w="xl">
-                <Button w="100%" onClick={handleGenerate}>Generate a group</Button>
-              </Flex>
-              <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Insert your username</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Input
-                      placeholder="username"
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                  </ModalBody>
-
-                  <ModalFooter>
-                    <Button mr={3} onClick={onClose}>
-                      Close
-                    </Button>
-                    <Button variant="outline" onClick={handleAction} isLoading={loading}>
-                      Next
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-          </Center>
-        </GridItem>
-      </Grid>
+            <ModalFooter>
+              <Button mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleAction}
+                isLoading={loading}
+              >
+                Next
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Center>
     </div>
   );
 };

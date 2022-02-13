@@ -21,6 +21,11 @@ const theme = extendTheme({
         color: 'blue.900',
       },
     },
+    Heading: {
+      baseStyle: {
+        color: 'blue.900',
+      },
+    },
     FormLabel: {
       baseStyle: {
         color: 'blue.800',
